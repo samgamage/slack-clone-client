@@ -8,12 +8,13 @@ module.exports = {
     'object-curly-newline': 0,
     'arrow-body-style': 0,
     'import/extensions': 'off',
-    'import/no-unresolved': 'off'
+    'import/no-unresolved': 'off',
+    'no-undef': 0,
   },
   globals: {
-    document: 1
+    document: 1,
   },
   env: {
-    es6: true
-  }
+    es6: true,
+  },
 };
