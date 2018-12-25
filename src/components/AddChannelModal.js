@@ -60,7 +60,7 @@ export default compose(
   withFormik({
     mapPropsToValues: () => ({ name: '' }),
     handleSubmit: async (values, { props: { onClose, teamId, mutate }, setSubmitting }) => {
-      const response = await mutate({
+      await mutate({
         variables: { teamId, name: values.name },
         optimisticResponse: {
           createChannel: {
@@ -73,18 +73,17 @@ export default compose(
             },
           },
         },
-        update: (proxy, { data: { createChannel } }) => {
+        update: (store, { data: { createChannel } }) => {
           const { ok, channel } = createChannel;
           if (!ok) {
             return;
           }
-          const data = proxy.readQuery({ query: allTeamsQuery });
+          const data = store.readQuery({ query: allTeamsQuery });
           const teamIdx = findIndex(data.allTeams, ['id', teamId]);
           data.allTeams[teamIdx].channels.push(channel);
-          proxy.writeQuery({ query: allTeamsQuery, data });
+          store.writeQuery({ query: allTeamsQuery, data });
         },
       });
-      console.log(response);
       onClose();
       setSubmitting(false);
     },
