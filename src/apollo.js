@@ -2,10 +2,9 @@ import { ApolloClient } from 'apollo-client';
 import { createHttpLink } from 'apollo-link-http';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import { setContext } from 'apollo-link-context';
-import { ApolloLink } from 'apollo-link';
-// import { ApolloLink, split } from 'apollo-link';
-// import { WebSocketLink } from 'apollo-link-ws';
-// import { getMainDefinition } from 'apollo-utilities';
+import { ApolloLink, split } from 'apollo-link';
+import { WebSocketLink } from 'apollo-link-ws';
+import { getMainDefinition } from 'apollo-utilities';
 
 const httpLink = createHttpLink({ uri: 'http://localhost:8080/graphql' });
 
@@ -36,23 +35,23 @@ const afterwareLink = new ApolloLink((operation, forward) => {
 
 const httpLinkWithMiddleware = afterwareLink.concat(middlewareLink.concat(httpLink));
 
-// const wsLink = new WebSocketLink({
-//   uri: 'ws://localhost:8080/subscriptions',
-//   options: {
-//     reconnect: true,
-//   },
-// });
+const wsLink = new WebSocketLink({
+  uri: 'ws://localhost:8080/subscriptions',
+  options: {
+    reconnect: true,
+  },
+});
 
-// const link = split(
-//   ({ query }) => {
-//     const { kind, operation } = getMainDefinition(query);
-//     return kind === 'OperationDefinition' && operation === 'subscription';
-//   },
-//   wsLink,
-//   httpLinkWithMiddleware,
-// );
+const link = split(
+  ({ query }) => {
+    const { kind, operation } = getMainDefinition(query);
+    return kind === 'OperationDefinition' && operation === 'subscription';
+  },
+  wsLink,
+  httpLinkWithMiddleware,
+);
 
 export default new ApolloClient({
-  link: httpLinkWithMiddleware,
+  link,
   cache: new InMemoryCache(),
 });

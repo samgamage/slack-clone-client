@@ -4,7 +4,7 @@ import { ApolloProvider } from 'react-apollo';
 import 'semantic-ui-css/semantic.min.css';
 
 import Routes from './routes';
-import * as serviceWorker from './serviceWorker';
+import registerServiceWorker from './registerServiceWorker';
 import client from './apollo';
 
 const App = (
@@ -14,4 +14,4 @@ const App = (
 );
 
 ReactDOM.render(App, document.getElementById('root'));
-serviceWorker.unregister();
+registerServiceWorker();
