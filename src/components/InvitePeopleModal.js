@@ -1,8 +1,8 @@
 import React from 'react';
 import { Modal, Input, Button, Form } from 'semantic-ui-react';
 import { withFormik } from 'formik';
-import gql from 'graphql-tag';
 import { compose, graphql } from 'react-apollo';
+import gql from 'graphql-tag';
 
 import normalizeErrors from '../normalizeErrors';
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import gql from 'graphql-tag';
-import { graphql } from 'react-apollo';
 import { Comment } from 'semantic-ui-react';
+import { graphql } from 'react-apollo';
 import Messages from '../components/Messages';
 
 const convertToDate = (timestamp) => {
