@@ -1,6 +1,6 @@
 import React from 'react';
-import gql from 'graphql-tag';
 import { graphql } from 'react-apollo';
+import gql from 'graphql-tag';
 import { Comment } from 'semantic-ui-react';
 
 import Messages from '../components/Messages';
@@ -50,7 +50,7 @@ class MessageContainer extends React.Component {
 
       return {
         ...prev,
-        messages: [...prev.messages, subscriptionData.newChannelMessage],
+        messages: [...prev.messages, subscriptionData.data.newChannelMessage],
       };
     },
   });
