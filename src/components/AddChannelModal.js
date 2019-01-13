@@ -67,9 +67,9 @@ export default compose(
             __typename: 'Mutation',
             ok: true,
             channel: {
-              __typename: 'Channel',
               id: -1,
               name: values.name,
+              __typename: 'Channel',
             },
           },
         },

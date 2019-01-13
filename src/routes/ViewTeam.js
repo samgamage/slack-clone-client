@@ -20,7 +20,12 @@ const ViewTeam = ({
     return null;
   }
 
-  const teams = [...allTeams, ...inviteTeams];
+  let teams = [];
+  if (allTeams && inviteTeams) {
+    teams = [...allTeams];
+  } else {
+    teams = [];
+  }
 
   if (!teams.length) {
     return <Redirect to="/create-team" />;
