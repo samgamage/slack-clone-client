@@ -59,7 +59,9 @@ class MessageContainer extends React.Component {
     const {
       data: { loading, messages },
     } = this.props;
-    return loading ? null : (
+    return loading ? (
+      'Loading...'
+    ) : (
       <Messages>
         <Comment.Group>
           {!messages
