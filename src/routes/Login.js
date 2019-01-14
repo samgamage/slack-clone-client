@@ -1,8 +1,9 @@
 import React from 'react';
 import { Form, Message, Button, Input, Container, Header } from 'semantic-ui-react';
 import { extendObservable } from 'mobx';
-import { gql, graphql } from 'react-apollo';
+import { graphql } from 'react-apollo';
 import { observer } from 'mobx-react';
+import gql from 'graphql-tag';
 
 class Login extends React.Component {
   constructor(props) {
