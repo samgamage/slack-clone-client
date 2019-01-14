@@ -22,7 +22,7 @@ const ViewTeam = ({
 
   let teams = [];
   if (allTeams && inviteTeams) {
-    teams = [...allTeams];
+    teams = [...allTeams, ...inviteTeams];
   } else {
     teams = [];
   }

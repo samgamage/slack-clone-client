@@ -16,6 +16,7 @@
     "apollo-link-http": "1.0.0",
     "apollo-link-ws": "^1.0.12",
     "apollo-utilities": "^1.0.27",
+    "dayjs": "^1.8.0",
     "formik": "^1.4.2",
     "graphql": "^14.0.2",
     "graphql-tag": "^2.10.0",

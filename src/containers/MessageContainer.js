@@ -2,6 +2,7 @@ import React from 'react';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 import { Comment } from 'semantic-ui-react';
+import dayjs from 'dayjs';
 
 import Messages from '../components/Messages';
 
@@ -17,6 +18,11 @@ const newChannelMessageSubscription = gql`
     }
   }
 `;
+
+const convertToDate = (timestamp) => {
+  const stamp = timestamp.substring(0, 10);
+  return dayjs.unix(stamp).format('MM/DD/YY hh:mm:ss');
+};
 
 class MessageContainer extends React.Component {
   componentWillMount() {
@@ -71,7 +77,7 @@ class MessageContainer extends React.Component {
                 <Comment.Content>
                   <Comment.Author as="a">{m.user.username}</Comment.Author>
                   <Comment.Metadata>
-                    <div>{m.created_at}</div>
+                    <div>{convertToDate(m.created_at)}</div>
                   </Comment.Metadata>
                   <Comment.Text>{m.text}</Comment.Text>
                   <Comment.Actions>
